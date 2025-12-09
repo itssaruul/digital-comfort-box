@@ -51,7 +51,6 @@ const App: React.FC = () => {
       </div>
 
       {/* Scrollable Content Wrapper */}
-      {/* REMOVED justify-center: This fixes the scrolling issue. my-auto on main handles centering when content fits. */}
       <div className="relative z-10 min-h-screen flex flex-col items-center p-6 md:p-8">
         
         <main className={`w-full max-w-2xl transition-all duration-500 ease-in-out my-auto ${isTransitioning ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}>
@@ -114,7 +113,8 @@ const App: React.FC = () => {
             </CardGlass>
           ) : (
             // MESSAGE VIEW
-            <CardGlass className="p-8 md:p-16 flex flex-col items-center justify-center text-center">
+            // Removed justify-center to allow content to flow naturally from top
+            <CardGlass className="p-8 md:p-16 flex flex-col items-center text-center">
               
               {loading ? (
                 <div className="flex flex-col items-center animate-fade-in min-h-[400px] justify-center">
@@ -160,7 +160,8 @@ const App: React.FC = () => {
                         <Music className="w-4 h-4" />
                         <span className="text-xs font-bold uppercase tracking-widest">Songs for the vibe</span>
                       </div>
-                      <div className="bg-white/40 border border-white/60 rounded-2xl p-4 shadow-sm backdrop-blur-md max-h-80 overflow-y-auto">
+                      {/* Removed max-h-80 and overflow-y-auto to allow full card expansion */}
+                      <div className="bg-white/40 border border-white/60 rounded-2xl p-4 shadow-sm backdrop-blur-md">
                         <ul className="space-y-3">
                           {message.playlist.map((song, idx) => (
                             <li key={idx} className="flex flex-col text-sm border-b border-lavender-100 last:border-0 pb-2 last:pb-0">
