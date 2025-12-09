@@ -47,10 +47,10 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="relative min-h-screen w-full bg-slate-50 font-sans text-slate-700 overflow-x-hidden flex flex-col">
+    <div className="relative min-h-screen w-full font-sans text-slate-700 flex flex-col">
       
       {/* Fixed Background Elements */}
-      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden bg-slate-50">
         {/* Vibrant Purplish Pink Circle Blobs */}
         <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-fuchsia-400/30 rounded-full blur-[120px] mix-blend-multiply animate-pulse-slow"></div>
         <div className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-purple-400/30 rounded-full blur-[100px] mix-blend-multiply animate-pulse-slow" style={{ animationDelay: '2s' }}></div>
@@ -61,15 +61,14 @@ const App: React.FC = () => {
       {/* Main Container */}
       {/* 
          Structure for perfect centering + scrolling:
-         1. main: flex-grow ensures it fills available space between header (none) and footer.
-         2. main: flex-col items-center centers content horizontally.
-         3. REMOVED justify-center on main: This prevents top-clipping when content is too long.
-         4. Content Wrapper: 'my-auto' centers vertically if space is available, but flows normally if content is tall.
-         5. py-12: Adds breathing room so centered content isn't flush with edges on small screens.
+         - The outer div is flex column min-h-screen.
+         - 'main' is flex-grow flex-col flex.
+         - The inner div uses 'm-auto' (margin: auto). In a flex parent, this centers the child vertically and horizontally.
+         - Unlike justify-center, m-auto allows the element to go off-screen (scroll) if it's too big, without clipping the top.
       */}
-      <main className={`relative z-10 flex-grow flex flex-col items-center w-full px-4 transition-all duration-500 ease-in-out ${isTransitioning ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}>
+      <main className={`relative z-10 flex-grow flex flex-col w-full transition-all duration-500 ease-in-out ${isTransitioning ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}>
         
-        <div className="w-full max-w-2xl my-auto py-12">
+        <div className="w-full max-w-2xl m-auto px-4 py-12">
           {!selectedMood ? (
             // HOME VIEW
             <GlassCard className="p-10 md:p-14 text-center flex flex-col items-center justify-center min-h-[500px]">
