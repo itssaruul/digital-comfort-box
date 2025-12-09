@@ -40,7 +40,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="relative min-h-screen w-full bg-slate-50 font-sans text-slate-700 overflow-x-hidden">
+    <div className="relative min-h-screen w-full bg-slate-50 font-sans text-slate-700">
       
       {/* Fixed Background Elements */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
@@ -51,9 +51,9 @@ const App: React.FC = () => {
       </div>
 
       {/* Scrollable Content Wrapper */}
-      <div className="relative z-10 min-h-screen flex flex-col items-center p-6 md:p-8">
+      <div className={`relative z-10 min-h-screen w-full flex flex-col items-center px-4 md:px-6 transition-all duration-500 ${!selectedMood ? 'justify-center' : 'pt-12 pb-20'}`}>
         
-        <main className={`w-full max-w-2xl transition-all duration-500 ease-in-out my-auto ${isTransitioning ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}>
+        <main className={`w-full max-w-2xl transition-all duration-500 ease-in-out ${isTransitioning ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}>
           
           {!selectedMood ? (
             // HOME VIEW
@@ -113,7 +113,6 @@ const App: React.FC = () => {
             </CardGlass>
           ) : (
             // MESSAGE VIEW
-            // Removed justify-center to allow content to flow naturally from top
             <CardGlass className="p-8 md:p-16 flex flex-col items-center text-center">
               
               {loading ? (
@@ -160,7 +159,6 @@ const App: React.FC = () => {
                         <Music className="w-4 h-4" />
                         <span className="text-xs font-bold uppercase tracking-widest">Songs for the vibe</span>
                       </div>
-                      {/* Removed max-h-80 and overflow-y-auto to allow full card expansion */}
                       <div className="bg-white/40 border border-white/60 rounded-2xl p-4 shadow-sm backdrop-blur-md">
                         <ul className="space-y-3">
                           {message.playlist.map((song, idx) => (
@@ -186,7 +184,7 @@ const App: React.FC = () => {
 
         </main>
 
-        <footer className="w-full text-center mt-8 pb-2 opacity-50 hover:opacity-100 transition-opacity">
+        <footer className="w-full text-center mt-auto py-6 opacity-50 hover:opacity-100 transition-opacity">
           <p className="text-xs text-slate-400 font-sans tracking-widest uppercase">
             Made for Zoloo
           </p>
