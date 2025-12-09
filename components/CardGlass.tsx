@@ -1,11 +1,11 @@
 import React from 'react';
 
-interface GlassCardProps {
+interface CardGlassProps {
   children: React.ReactNode;
   className?: string;
 }
 
-const CardGlass: React.FC<GlassCardProps> = ({ children, className = '' }) => {
+const CardGlass: React.FC<CardGlassProps> = ({ children, className = '' }) => {
   return (
     <div className={`
       relative
