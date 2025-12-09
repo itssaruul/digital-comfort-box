@@ -71,7 +71,7 @@ const App: React.FC = () => {
         <div className="w-full max-w-2xl m-auto px-4 py-12">
           {!selectedMood ? (
             // HOME VIEW
-            <GlassCard className="p-10 md:p-30 text-center flex flex-col justify-center min-h-[500px]">
+            <GlassCard className="p-10 md:p-14 text-center flex flex-col justify-center min-h-[500px]">
               
               <h1 className="text-3xl md:text-4xl font-serif font-medium text-slate-800 mb-2 tracking-wide text-center">
                 Open when...
