@@ -40,11 +40,9 @@ const App: React.FC = () => {
   };
 
   return (
-    // FIX: Changed root container to allow vertical scrolling (removed overflow-hidden, used overflow-x-hidden)
-    // FIX: Changed layout to use min-h-screen with flex-col, ensuring content can push the height
     <div className="relative min-h-screen w-full bg-slate-50 font-sans text-slate-700 overflow-x-hidden">
       
-      {/* Fixed Background Elements - keeps the background stationary while content scrolls */}
+      {/* Fixed Background Elements */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
         <div className="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] bg-lavender-200/40 rounded-full blur-[120px] mix-blend-multiply animate-pulse-slow"></div>
         <div className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-blue-100/40 rounded-full blur-[100px] mix-blend-multiply animate-pulse-slow" style={{ animationDelay: '2s' }}></div>
@@ -53,26 +51,24 @@ const App: React.FC = () => {
       </div>
 
       {/* Scrollable Content Wrapper */}
-      <div className="relative z-10 min-h-screen flex flex-col items-center justify-center p-6 md:p-8">
+      {/* REMOVED justify-center: This fixes the scrolling issue. my-auto on main handles centering when content fits. */}
+      <div className="relative z-10 min-h-screen flex flex-col items-center p-6 md:p-8">
         
         <main className={`w-full max-w-2xl transition-all duration-500 ease-in-out my-auto ${isTransitioning ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}>
           
           {!selectedMood ? (
-            // HOME VIEW - SIMPLE SCROLL PICKER
+            // HOME VIEW
             <CardGlass className="p-10 md:p-14 text-center animate-float flex flex-col items-center min-h-[500px] justify-center">
               
               <h1 className="text-3xl md:text-4xl font-serif font-medium text-slate-800 mb-2 tracking-wide text-center">
                 Open when...
               </h1>
               
-              {/* Dynamic Icon Display */}
               <div className="mx-auto my-8 w-24 h-24 rounded-full bg-white/40 border border-white/60 flex items-center justify-center shadow-sm transition-all duration-300">
                  <MoodIcon mood={pickerMood} className="w-10 h-10 text-lavender-500 transition-all duration-300 transform scale-110" />
               </div>
 
-              {/* Scrollable Mood List */}
               <div className="mx-auto relative w-full max-w-xs h-40 mb-8">
-                 {/* Fade Masks */}
                  <div className="absolute top-0 left-0 w-full h-12 bg-gradient-to-b from-white/60 to-transparent z-10 pointer-events-none"></div>
                  <div className="absolute bottom-0 left-0 w-full h-12 bg-gradient-to-t from-white/60 to-transparent z-10 pointer-events-none"></div>
 
@@ -99,7 +95,6 @@ const App: React.FC = () => {
                  </div>
               </div>
 
-              {/* Enter Button */}
               <button
                 onClick={handleEnter}
                 className="
@@ -119,7 +114,6 @@ const App: React.FC = () => {
             </CardGlass>
           ) : (
             // MESSAGE VIEW
-            // FIX: Removed fixed height constraints that might prevent expansion
             <CardGlass className="p-8 md:p-16 flex flex-col items-center justify-center text-center">
               
               {loading ? (
@@ -166,7 +160,7 @@ const App: React.FC = () => {
                         <Music className="w-4 h-4" />
                         <span className="text-xs font-bold uppercase tracking-widest">Songs for the vibe</span>
                       </div>
-                      <div className="bg-white/40 border border-white/60 rounded-2xl p-4 shadow-sm backdrop-blur-md">
+                      <div className="bg-white/40 border border-white/60 rounded-2xl p-4 shadow-sm backdrop-blur-md max-h-80 overflow-y-auto">
                         <ul className="space-y-3">
                           {message.playlist.map((song, idx) => (
                             <li key={idx} className="flex flex-col text-sm border-b border-lavender-100 last:border-0 pb-2 last:pb-0">
