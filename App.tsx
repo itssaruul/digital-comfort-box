@@ -59,13 +59,20 @@ const App: React.FC = () => {
       </div>
 
       {/* Main Container */}
-      <main className={`relative z-10 flex-grow flex flex-col items-center justify-center w-full px-4 py-12 transition-all duration-500 ease-in-out ${isTransitioning ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}>
+      {/* 
+         Structure for perfect centering + scrolling:
+         1. main: flex-grow ensures it fills available space between header (none) and footer.
+         2. main: flex-col items-center centers content horizontally.
+         3. REMOVED justify-center on main: This prevents top-clipping when content is too long.
+         4. Content Wrapper: 'my-auto' centers vertically if space is available, but flows normally if content is tall.
+         5. py-12: Adds breathing room so centered content isn't flush with edges on small screens.
+      */}
+      <main className={`relative z-10 flex-grow flex flex-col items-center w-full px-4 transition-all duration-500 ease-in-out ${isTransitioning ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}>
         
-        {/* Content Wrapper - 'w-full' ensures width, 'my-auto' centers vertically but allows scrolling if taller than screen */}
-        <div className="w-full max-w-2xl my-auto">
+        <div className="w-full max-w-2xl my-auto py-12">
           {!selectedMood ? (
             // HOME VIEW
-            <GlassCard className="p-10 md:p-14 text-center flex flex-col items-center justify-center min-h-[450px] md:min-h-[500px]">
+            <GlassCard className="p-10 md:p-14 text-center flex flex-col items-center justify-center min-h-[500px]">
               
               <h1 className="text-3xl md:text-4xl font-serif font-medium text-slate-800 mb-2 tracking-wide text-center">
                 Open when...
