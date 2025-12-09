@@ -16,9 +16,7 @@ const BackgroundParticles: React.FC = () => {
 
     // Palette matching the background blobs: Lavender, Light Blue, Soft Pink
     const colors = [
-      '167, 139, 250', // Lavender (approx tailwind violet-400)
-      '147, 197, 253', // Blue (approx tailwind blue-300)
-      '244, 114, 182', // Pink (approx tailwind pink-400)
+      '167, 500, 500', // Lavender (approx tailwind violet-400)
     ];
 
     const resizeCanvas = () => {
