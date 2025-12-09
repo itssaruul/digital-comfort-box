@@ -59,16 +59,9 @@ const App: React.FC = () => {
       </div>
 
       {/* Main Container */}
-      {/* 
-        Changes for better scrolling/centering:
-        1. flex-grow ensures it takes up available space.
-        2. items-center centers horizontally.
-        3. Removed 'justify-center' from main container to prevent top clipping on small screens.
-        4. Added 'my-auto' to the inner wrapper div. This effectively centers it vertically 
-           if there is space, but allows it to just sit in the flow if content is taller than screen.
-      */}
-      <main className={`relative z-10 flex-grow flex flex-col items-center w-full px-4 py-8 md:px-6 transition-all duration-500 ease-in-out ${isTransitioning ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}>
+      <main className={`relative z-10 flex-grow flex flex-col items-center justify-center w-full px-4 py-12 transition-all duration-500 ease-in-out ${isTransitioning ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}>
         
+        {/* Content Wrapper - 'w-full' ensures width, 'my-auto' centers vertically but allows scrolling if taller than screen */}
         <div className="w-full max-w-2xl my-auto">
           {!selectedMood ? (
             // HOME VIEW
