@@ -44,16 +44,18 @@ const App: React.FC = () => {
       
       {/* Fixed Background Elements */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-        <div className="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] bg-lavender-200/40 rounded-full blur-[120px] mix-blend-multiply animate-pulse-slow"></div>
-        <div className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-blue-100/40 rounded-full blur-[100px] mix-blend-multiply animate-pulse-slow" style={{ animationDelay: '2s' }}></div>
-        <div className="absolute top-[40%] left-[30%] w-[400px] h-[400px] bg-pink-100/30 rounded-full blur-[90px] mix-blend-multiply animate-pulse-slow" style={{ animationDelay: '4s' }}></div>
+        {/* Purplish Pink Circle Blobs */}
+        <div className="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] bg-purple-300/30 rounded-full blur-[120px] mix-blend-multiply animate-pulse-slow"></div>
+        <div className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-pink-300/30 rounded-full blur-[100px] mix-blend-multiply animate-pulse-slow" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute top-[40%] left-[30%] w-[400px] h-[400px] bg-violet-200/40 rounded-full blur-[90px] mix-blend-multiply animate-pulse-slow" style={{ animationDelay: '4s' }}></div>
         <BackgroundParticles />
       </div>
 
       {/* Scrollable Content Wrapper */}
-      <div className={`relative z-10 min-h-screen w-full flex flex-col items-center px-4 md:px-6 transition-all duration-500 ${!selectedMood ? 'justify-center' : 'pt-12 pb-20'}`}>
+      {/* Used flex-col and my-auto on main to safely center content vertically while allowing scrolling */}
+      <div className="relative z-10 min-h-screen w-full flex flex-col items-center px-4 md:px-6 py-6">
         
-        <main className={`w-full max-w-2xl transition-all duration-500 ease-in-out ${isTransitioning ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}>
+        <main className={`w-full max-w-2xl my-auto transition-all duration-500 ease-in-out ${isTransitioning ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}>
           
           {!selectedMood ? (
             // HOME VIEW
@@ -184,7 +186,7 @@ const App: React.FC = () => {
 
         </main>
 
-        <footer className="w-full text-center mt-auto py-6 opacity-50 hover:opacity-100 transition-opacity">
+        <footer className="w-full text-center mt-6 pb-2 opacity-50 hover:opacity-100 transition-opacity">
           <p className="text-xs text-slate-400 font-sans tracking-widest uppercase">
             Made for Zoloo
           </p>
