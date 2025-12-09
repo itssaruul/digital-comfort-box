@@ -47,7 +47,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="relative min-h-screen w-full bg-slate-50 font-sans text-slate-700 overflow-x-hidden">
+    <div className="relative min-h-screen w-full bg-slate-50 font-sans text-slate-700 overflow-x-hidden flex flex-col">
       
       {/* Fixed Background Elements */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
@@ -59,15 +59,12 @@ const App: React.FC = () => {
       </div>
 
       {/* Main Container */}
-      {/* Changed logic: Removed 'justify-center'. Used 'flex-col items-center' + 'py-12'. 
-          'my-auto' on main centers it when content is short, but allows scrolling when content is long. */}
-      <div className="relative z-10 min-h-screen w-full flex flex-col items-center py-12 px-4 md:px-6">
+      <main className={`relative z-10 flex-grow flex flex-col items-center justify-center w-full px-4 py-6 md:px-6 transition-all duration-500 ease-in-out ${isTransitioning ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}>
         
-        <main className={`w-full max-w-2xl my-auto transition-all duration-500 ease-in-out ${isTransitioning ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}>
-          
+        <div className="w-full max-w-2xl">
           {!selectedMood ? (
             // HOME VIEW
-            <GlassCard className="p-10 md:p-14 text-center animate-float flex flex-col items-center min-h-[500px] justify-center">
+            <GlassCard className="p-10 md:p-14 text-center flex flex-col items-center justify-center min-h-[450px] md:min-h-[500px]">
               
               <h1 className="text-3xl md:text-4xl font-serif font-medium text-slate-800 mb-2 tracking-wide text-center">
                 Open when...
@@ -191,15 +188,15 @@ const App: React.FC = () => {
               )}
             </GlassCard>
           )}
+        </div>
 
-        </main>
+      </main>
 
-        <footer className="w-full text-center mt-6 pb-2 opacity-50 hover:opacity-100 transition-opacity">
-          <p className="text-xs text-slate-400 font-sans tracking-widest uppercase">
-            Made for Zoloo
-          </p>
-        </footer>
-      </div>
+      <footer className="w-full text-center pb-6 opacity-50 hover:opacity-100 transition-opacity z-10">
+        <p className="text-xs text-slate-400 font-sans tracking-widest uppercase">
+          Made for Zoloo
+        </p>
+      </footer>
     </div>
   );
 };
